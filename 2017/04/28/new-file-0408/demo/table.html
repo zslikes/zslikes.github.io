@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="Author" content="Fly">
+    <title>Title</title>
+    <style>
+        *{ margin: 0; padding: 0; font-family:Microsoft yahei,serif;}
+        li{ list-style:none;}
+        #wrap{
+            border-collapse: collapse;
+            margin:50px auto 0;
+        }
+        #wrap td{
+            width: 100px;
+            height: 30px;
+            text-align: center;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        #wrap tr.true td{
+            background: #00bf6e;
+            color: #fff;
+        }
+        #wrap td.del{
+            cursor: pointer;
+        }
+        #wrap td.del:hover{
+            color:pink;
+        }
+        #box{
+            width: 605px;
+            margin: 20px auto;
+        }
+        #box p{
+            float:right;
+            width: 50px;
+            height: 25px;
+            background: #f60;
+            color: #fff;
+            line-height: 25px;
+            text-align: center;
+            font-weight: bold;
+            margin-left: 2px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+        #box input{
+            float: right;
+            width: 50px;
+            height: 21px;
+            font-size: 13px; text-align: center;
+         }
+        #newBox{
+            margin: 20px auto;
+            padding-top: 20px;
+            width: 605px; height: auto;
+            text-align: right;
+            clear: both;
+         }
+        #newBox p{
+            margin-left: 515px;
+            width: 90px;
+            height: 25px;
+            background: #f60;
+            color: white;
+            text-align:center;
+         }
+         #newBox input{
+            margin-top: 5px;
+         }
+         #newBox p:hover{
+            cursor: pointer;
+         }
+    </style>
+</head>
+<body>
+    <table id="wrap" border="1">
+        <tbody>
+            <tr>
+                <td><input type="checkbox"></td>
+                <td>大狗子</td>
+                <td>4岁</td>
+                <td>白色</td>
+                <td>牧羊犬</td>
+                <td class="del">删除</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox"></td>
+                <td>二狗子</td>
+                <td>2岁</td>
+                <td>黑色</td>
+                <td>拉布拉多</td>
+                <td class="del">删除</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox"></td>
+                <td>三狗子</td>
+                <td>6岁</td>
+                <td>黄色</td>
+                <td>秋田</td>
+                <td class="del">删除</td>
+            </tr>
+        </tbody>
+    </table>
+    <div id="box">
+        <p>全选</p>
+        <p>全不选</p>
+        <p>反选</p>
+        <p>删除</p>
+        <input class="num" type="text" placeholder="选择行">
+        <p title="不选择哪行,增加最后一行内容">新增</p>
+    </div>
+    <div id="newBox">
+        <p>增加新内容</p>
+        名字:<input class="num" type="text" placeholder="名字"><br>
+        年龄:<input class="num" type="text" placeholder="年龄"><br>
+        颜色:<input class="num" type="text" placeholder="颜色"><br>
+        品种:<input class="num" type="text" placeholder="品种"><br>
+    </div>
+
+    <script>
+
+        (function () {
+            var oTBody = document.getElementById("wrap").children[0],
+                aTr,aDel,length;
+            var tdLen = oTBody.children[0].querySelectorAll('td').length;
+            var aBoxP = document.querySelectorAll("#box p");
+            var num = document.querySelector("#box .num");
+            var newMes = document.querySelector('#newBox p');
+            var mes = document.querySelectorAll('#newBox input');
+            var mesLen = mes.length;
+            getE();
+
+            //获取剩下的tr，以及td.del，以及对于的length
+            function getE(){
+                aTr = oTBody.querySelectorAll("tr"),
+                aDel = oTBody.querySelectorAll("tr td.del"),
+                length = aTr.length;
+            }
+
+            //tr的操作
+            trChange();
+            function trChange(){
+                for (var i = 0; i < length; i++) {
+                    aTr[i].ifCheck = false;
+                    aTr[i].onclick = function () {
+                        var cBox = this.children[0].children[0];
+                        cBox.checked = this.ifCheck = !this.ifCheck;
+                        this.className = this.ifCheck+'';
+                    };
+                }
+                for (i = 0; i < length; i++) {
+                    aDel[i].onclick = function (e) {
+                        e = e || window.event;
+                        e.cancelBubble = true;
+                        e.stopPropagation && e.stopPropagation();
+                        if ( confirm("确定删除？") ){
+                            var p = this.parentNode;
+                            p.parentNode.removeChild( p );
+                            getE();
+                        }
+                    };
+                }
+            }
+
+            //全选等操作
+            (function () {
+                //全选
+                aBoxP[0].onclick = function () {
+                    for (var i = 0; i < length; i++) {
+                        aTr[i].children[0].children[0].checked = aTr[i].ifCheck = true;
+                        aTr[i].className = "true";
+                    }
+                };
+                //全不选
+                aBoxP[1].onclick = function () {
+                    for (var i = 0; i < length; i++) {
+                        aTr[i].children[0].children[0].checked = aTr[i].ifCheck = false;
+                        aTr[i].className = "false";
+                    }
+                };
+                //反选
+                aBoxP[2].onclick = function () {
+                    for (var i = 0; i < length; i++) {
+                        aTr[i].children[0].children[0].checked = aTr[i].ifCheck = !aTr[i].ifCheck;
+                        aTr[i].className = aTr[i].ifCheck+"";
+                    }
+                };
+                //删除全部
+                aBoxP[3].onclick = function () {
+                    for (var i = 0; i < length; i++) {
+                        if ( aTr[i].ifCheck ){
+                            oTBody.removeChild( aTr[i] );
+                        }
+                    }
+                    getE();
+                };
+                //添加列表
+                 aBoxP[4].onclick = function () {
+                    var crTr = document.createElement('tr'),
+                        crTdbtn =  document.createElement('td'),
+                        crTdrem = document.createElement('td');
+                        crTdbtn.innerHTML = '<input type="checkbox">';
+                        crTdrem.innerHTML = '删除';
+                        crTdrem.className = 'del';
+                    crTr.appendChild(crTdbtn);
+                    for(var x=1;x<tdLen-1;x++){
+                        var crTd = document.createElement('td');
+                        if(!num.value){
+                            crTd.innerHTML = oTBody.children[length-1].querySelectorAll('td')[x].innerHTML;
+                        }else{
+                            crTd.innerHTML = oTBody.children[parseInt(num.value)-1].querySelectorAll('td')[x].innerHTML;
+                        }
+                        crTr.appendChild(crTd);
+                    }
+                    crTr.appendChild(crTdrem);
+                    oTBody.appendChild(crTr);
+                    num.value = '';
+                    getE();
+                    trChange();
+                };
+                //想列表添加新内容
+                newMes.onclick = function (){
+                    noNull = true;
+                    for(var x=0;x<mesLen;x++){
+                        if(!mes[x].value) noNull = false;
+                    }
+                    if(noNull){
+                        var crTr = document.createElement('tr'),
+                            crTdbtn =  document.createElement('td'),
+                            crTdrem = document.createElement('td'),
+                            noNull = true;
+                        crTdbtn.innerHTML = '<input type="checkbox">';
+                        crTdrem.innerHTML = '删除';
+                        crTdrem.className = 'del';
+                        crTr.appendChild(crTdbtn);
+                        for(var x=0;x<mesLen;x++){
+                            var crTd = document.createElement('td');
+                            crTd.innerHTML = mes[x].value;
+                            crTr.appendChild(crTd);
+                        }
+                        crTr.appendChild(crTdrem);
+                        oTBody.appendChild(crTr);
+                        num.value = '';
+                        getE();
+                        trChange();
+                        for(var x=0;x<mesLen;x++){
+                            mes[x].value = '';
+                        }
+                    }else{
+                        alert('请补全添加的内容');
+                    }
+                }
+            })();
+
+        })();
+
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

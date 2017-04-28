@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <!--注释-->
+  <style type="text/css">
+  /*注释*/
+  *{margin:0; padding:0; font-family:"微软雅黑";}
+  li{list-style:none;}
+  a{text-decoration:none;}
+
+  #box{
+	 margin: 99px auto;
+	 width: 580px; height: 430px;
+  }
+
+  #box .mess{
+	 position: relative;
+	 width: 560px; height: 430px;
+	 background: blue;
+	 float: left;
+	 overflow: hidden;
+  }
+
+  #box .mess .text{
+     position: absolute;
+	 left: 0; top: 0;
+     padding: 10px 10px  0 20px;
+	 width: 530px; height:900px;
+	 background: #fbf3b5;
+  }
+
+  #box .mess .text p{
+     line-height: 40px;
+  }
+
+  #box .bar{
+     position: relative;
+	 width: 20px; height: 430px;
+	 border-radius: 10px;
+	 background: -webkit-linear-gradient(top,#92daf3,#e076ec);
+	 float: right;
+  }
+
+  #box .bar .move{
+     position: absolute;
+     left: 0; top: 0;
+	 width: 20px; height: 50px;
+	 border-radius: 10px;
+	 background: black;
+  }
+
+  #box .bar .move:hover{
+     cursor: pointer;
+  }
+
+  </style>
+  <title></title>
+ </head>
+ <body>
+
+		<div id="box">
+			<div class="mess">
+				<div class="text">
+                    <h3>javascript简介</h3>
+					<p>javaScript一种直译式脚本语言--</p>
+                    <p>是一种动态类型、弱类型、基于原型的语言--</p>
+                    <p>内置支持类型。它的解释器被称为JavaScript引擎，为浏览器的一部分。</p>
+                    <p>广泛用于客户端的脚本语言，最早是在HTML（标准通用标记语言下的一个应用）网页上使用，用来给HTML网页增加动态功能。</p>
+					<p>在1995年时，由Netscape公司的Brendan Eich，在网景导航者浏览器上首次设计实现而成。</p>
+                    <p>因为Netscape与Sun合作，Netscape管理层希望它外观看起来像Java，因此取名为JavaScript。</p>
+                    <p>但实际上它的语法风格与Self及Scheme较为接近。</p>
+					<p>为了取得技术优势，微软推出了JScript，CEnvi推出ScriptEase，与JavaScript同样可在浏览器上运行。</p>
+                    <p>为了统一规格，因为JavaScript兼容于ECMA标准，因此也称为ECMAScript。</p>
+                    <h3>javascript功能</h3>
+                    <p>嵌入动态文本于HTML页面。</p>
+                    <p>对浏览器事件做出响应。</p>
+                    <p>读写HTML元素。</p>
+                    <p>在数据被提交到服务器之前验证数据。</p>
+                    <p>检测访客的浏览器信息。</p>
+                    <p>控制cookies，包括创建和修改等。</p>
+                    <p>基于Node.js技术进行服务器端编程。</p>
+				</div>
+			</div>
+			<div class="bar">
+				<div class="move">
+				</div>
+			</div>
+		</div>
+
+ </body>
+ <script language="javascript" charset="utf-8">
+
+        var text = document.querySelector('#box .mess .text'),
+            bar = document.querySelector('#box .bar'),
+            barmove = bar.querySelector('.move');
+
+        mouseWheel(text,function (e , move){
+            //console.log(move);
+            var textTop = parseFloat(getComputedStyle(text).top),
+                barmoveTop = parseFloat(getComputedStyle(barmove).top)
+
+            if(move < 0){
+                textTop -= 10;
+                barmoveTop += 8;
+                if(textTop < -480){
+                    textTop = -480;
+                }
+                if(barmoveTop > 380){
+                    barmoveTop = 380;
+                }
+            }
+            if(move > 0){
+                textTop += 10;
+                barmoveTop -= 10;
+                if(textTop > 0){
+                    textTop = 0;
+                }
+                 if(barmoveTop < 0 ){
+                    barmoveTop = 0;
+                }
+            }
+            text.style.top = textTop + 'px';
+            barmove.style.top = barmoveTop + 'px';
+        } , false);
+
+        function mouseWheel(obj , eFn , bool) {
+            obj.onmousewheel = Fn;
+            document.addEventListener && obj.addEventListener("DOMMouseScroll" , Fn);
+                function Fn(e) {
+                e = e || window.event;
+                var move = -e.wheelDelta/120 || e.detail/3;
+                eFn.call(this,e,move);
+                return bool;
+            }
+        }
+
+        barmove.onmousedown = function (e){
+
+             e = e || window.event;
+             var initY = e.clientY;
+             var textInit = parseFloat(getComputedStyle(text).top);
+             var barmoveInit = parseFloat(getComputedStyle(barmove).top);
+
+             document.onmousemove = function (e){
+
+                e = e || window.event;
+                var nowY = e.clientY;
+                var moveY = nowY - initY;
+                var scale = 480/380;
+                var textmove = textInit - moveY * scale;
+                var navmove = barmoveInit + moveY;
+
+                if(textmove < -480){
+                    textmove = -480;
+                }
+                if(navmove > 380){
+                    navmove = 380;
+                }
+                if(textmove > 0){
+                    textmove = 0;
+                }
+                 if(navmove < 0 ){
+                    navmove = 0;
+                }
+                text.style.top = textmove +'px';
+                barmove.style.top = navmove + 'px';
+            }
+
+            document.onmouseup = function (){
+
+                document.onmousemove = null;
+                document.onmouseup = null;
+            }
+        }
+
+        document.onselectstart = function (){
+            return false;
+        }
+
+</script>
