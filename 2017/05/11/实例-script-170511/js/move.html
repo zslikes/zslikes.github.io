@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <!--注释-->
+  <style type="text/css">
+  /*注释*/
+  *{margin:0; padding:0; font-family:"微软雅黑";}
+  li{list-style:none;}
+  a{text-decoration:none;}
+  body{background:#D1CFCF}
+
+  #box{
+    position: relative;
+    margin: 20px auto;
+    width: 1100px; height: 700px;
+    background: white;
+    box-shadow: 0 0 10px 2px #B4B4B4;
+  }
+
+  #box span{
+    position: absolute;
+    left: 50px; top: 50px;
+    width: 90px; height: 90px;
+    border-radius: 50%
+  }
+  </style>
+  <title></title>
+ </head>
+ <body>
+
+    <div id="box">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+ </body>
+ <script src="myuse.js"></script>
+ <script language="javascript" charset="utf-8">
+
+    var showbox = document.getElementById("box"),
+        showsp = showbox.querySelectorAll('span'),
+        splen = showsp.length,
+        time = 60,
+        colornum = ['0','1','2','3','4','5','6','7','8','9','a','b','c','d','e','f'];
+
+    // winW =showbox.clientWidth;
+    // winH =showbox.clientHeight;
+
+    for(var x=0;x<splen;x++){
+
+        showsp[x].style.background =  getcolor();
+        showsp[x].style.left = 0;
+        showsp[x].style.top = 0;
+        showsp[x].numt = 40;
+        showsp[x].numl = 40;
+        showsp[x].time = time + 9 * x;
+
+        qiumove(x);
+        function qiumove (x){
+
+            setInterval(function(){
+
+                var showleft = parseFloat(getComputedStyle(showsp[x]).left),
+                    showtop = parseFloat(getComputedStyle(showsp[x]).top),
+                    moveleft = showleft + showsp[x].numl,
+                    movetop = showtop + showsp[x].numt;
+
+                if (movetop > 610){
+                    showsp[x].numt = -40;
+                    movetop = 610;
+                    showsp[x].style.background =  getcolor()
+                }
+                if (moveleft > 1010){
+                    showsp[x].numl = -40;
+                    moveleft = 1010;
+                    showsp[x].style.background =  getcolor()
+                }
+                if (movetop < 0) {
+                    showsp[x].numt = 40;
+                    movetop = 0;
+                    showsp[x].style.background =  getcolor()
+                }
+                if (moveleft < 0) {
+                    showsp[x].numl = 40;
+                    moveleft = 0;
+                    showsp[x].style.background =  getcolor()
+                }
+                
+                move(showsp[x],{left: moveleft, top: movetop},showsp[x].time);
+           
+            },showsp[x].time);
+        }
+    }
+
+    function getcolor (){
+
+        var r = Math.floor(Math.random()*256),
+            g = Math.floor(Math.random()*256),
+            b = Math.floor(Math.random()*256);
+
+        return "radial-gradient(rgb(255,255,255),rgb("+r+","+g+","+b+"))";
+    }
+
+    //test();
+ </script>
+</html>

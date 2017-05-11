@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <!--注释-->
+  <style type="text/css">
+  /*注释*/
+  *{margin:0; padding:0; font-family:"微软雅黑";}
+  li{list-style:none;}
+  a{text-decoration:none;}
+
+  #box{
+     position: relative;
+	 margin: 99px auto;
+	 width: 900px; height: 500px;
+  }
+
+  #box .imgBox{
+	 position: absolute;
+	 width: 900px; height: 500px;
+     overflow: hidden;
+  }
+
+  #box .imgBox li{
+	 position: absolute;
+	 left: 0; top: 0
+	 width: 900px; height: 500px;
+  }
+
+  #box .navBar{
+	 position: absolute;
+	 left: 50%; top: 90%;
+	 margin-left: -110px;
+	 width: 220px; height: 26px;
+	 border-radius: 20px;
+  }
+
+  #box .navBar li{
+	 margin: 3px 0  3px 10px;
+	 width: 20px; height: 20px;
+	 background: red;
+	 border-radius: 50%;
+	 font-size: 15px; font-weight: 600; color: blue;
+	 text-align: center; line-height: 20px;
+	 float: left;
+  }
+
+   #box .navBar li:first-child{
+     background: white;
+  }
+
+  #box .btn span{
+	 position: absolute;
+	 top: 50%;
+	 margin-top: -20px;
+	 width: 40px; height: 40px;
+	 background: rgba(0,0,0,.3);
+	 font-size: 20px; color: white;
+	 text-align: center; line-height: 40px;
+     display: none;
+  }
+
+  #box .btn .left{
+	 left: 0;
+  }
+
+  #box .btn .right{
+	 right: 0;
+  }
+
+  #box .navBar li:hover{
+
+    cursor: pointer;
+  }
+
+  #box .btn span:hover{
+
+    cursor: pointer;
+  }
+
+  </style>
+  <title></title>
+ </head>
+ <body>
+
+		<div id="box">
+			<ul class="imgBox">
+				<li><img src="images/1.jpg" width="900" height="500" alt=""></li>
+				<li><img src="images/2.jpg" width="900" height="500" alt=""></li>
+				<li><img src="images/3.jpg" width="900" height="500" alt=""></li>
+				<li><img src="images/4.jpg" width="900" height="500" alt=""></li>
+				<li><img src="images/5.jpg" width="900" height="500" alt=""></li>
+				<li><img src="images/6.jpg" width="900" height="500" alt=""></li>
+				<li><img src="images/7.jpg" width="900" height="500" alt=""></li>
+			</ul>
+			<ul class="navBar">
+				<li>1</li>
+				<li>2</li>
+				<li>3</li>
+				<li>4</li>
+				<li>5</li>
+				<li>6</li>
+				<li>7</li>
+			</ul>
+			<div class="btn">
+				<span class="btn left">&lt;</span>
+				<span class="btn right">&gt;</span>
+			</div>
+		</div>
+
+ </body>
+ <script src='js/myuse.js'></script>
+ <script language="javascript" charset="utf-8">
+
+        var box = document.getElementById('box'),
+            showImg = box.querySelectorAll('#box .imgBox li'),
+            showBar = box.querySelectorAll('#box .navBar li'),
+            showSpan = box.querySelectorAll('#box .btn span'),
+            lenI = showImg.length,
+            lenB = showBar.length,
+            init = 0,
+            temp = 0,
+            timer = '';
+            lor = true,
+            auto = false;
+
+            runTimer();
+
+            // 初始化
+            for(var x=0;x<lenI;x++){
+
+                 showImg[x].num = x;
+                 showImg[x].pos = x * 900;
+                 showImg[x].style.left = showImg[x].pos + 'px';
+            }
+
+            // 点击选择
+            for(var x=0;x<lenI;x++){
+
+                 showBar[x].num = x;
+
+                 showBar[x].onclick = function (){
+
+                 showBar[temp].style.background = 'red';
+                 temp = this.num;
+                 this.style.background = 'white';
+                 init = 0 - showImg[this.num].num;
+                 runCartoon();
+
+                }
+            }
+
+            // 选择方向 点击左右
+            showSpan[0].onclick = function (){
+
+                 init = 1;
+                 lor = true;
+                 showBar[temp].style.background = 'red';
+                 temp --;
+                 if(temp < 0) temp = 6;
+                 temp %= 7;
+                 runCartoon();
+                 showBar[temp].style.background = 'white';
+            }
+
+            showSpan[1].onclick = function (){
+
+                 init = -1;
+                 lor = false;
+                 showBar[temp].style.background = 'red';
+                 temp ++;
+                 temp %= 7;
+                 runCartoon();
+                 showBar[temp].style.background = 'white';
+            }
+
+            box.onmouseover = function (){
+
+                 clearInterval(timer);
+                 showSpan[0].style.display = 'block';
+                 showSpan[1].style.display = 'block';
+            }
+
+            box.onmouseleave = function (){
+
+                 showSpan[0].style.display = 'none';
+                 showSpan[1].style.display = 'none';
+                 runTimer();
+            }
+
+            // 自动播放
+            function runTimer (){
+
+                timer = setInterval(function (){
+
+
+                 lor?init = -1:init =1;
+                 temp %= 7;
+                 showBar[temp].style.background = 'red';
+                 lor?temp ++:temp--;
+                 if(temp > 6) temp = 0;
+                 if(temp < 0) temp = 6;
+
+                 runCartoon();
+                 showBar[temp].style.background = 'white';
+                 },2000)
+            }
+
+            // 装入运动框架
+            function runCartoon(){
+
+                for(var y=0;y<lenI;y++){
+                        showImg[y].num += init;
+
+                        if(showImg[y].num == -6){
+                            showImg[y].style.display = 'none';
+                            showImg[y].num = 1;
+                            showImg[y].style.left = showImg[y].num * 900 + 'px';
+                        }
+                        if(showImg[y].num == 6){
+                            showImg[y].style.display = 'none';
+                            showImg[y].num = -1;
+                            showImg[y].style.left = showImg[y].num * 900 + 'px';
+                        }
+                        if(showImg[y].num == 7 || showImg[y].num == -7){
+                            showImg[y].style.display = 'none';
+                            showImg[y].num = 0;
+                            showImg[y].style.left = showImg[y].num * 900 + 'px';
+                        }
+
+                        showImg[y].style.display = 'block';
+                        move(showImg[y],{left: showImg[y].num * 900},600);
+                    }
+            }
+
+ </script>
+</html>

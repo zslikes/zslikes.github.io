@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <!--注释-->
+  <style type="text/css">
+  /*注释*/
+  *{margin:0; padding:0; font-family:"微软雅黑";}
+  li{list-style:none;}
+  a{text-decoration:none;}
+
+  #box{
+  	position: relative;
+  	margin: 20px auto;
+  	width: 320px; height: 400px;
+  	background: #01ccfd;
+  	text-align: center;
+  }
+
+  #box .tit{
+  	width: 100%; height: 30px;
+  	background: #0098ca;
+	font-size: 18px; color: white;
+	text-align: center; line-height: 30px;
+  }
+
+  #box form > input,.last{
+  	margin-top: 10px;
+  	width: 200px; height: 30px;
+  	text-indent: 10px;
+  }
+
+  #box .err{
+  	margin: 0 auto -15px auto;
+  	width: 200px; height: 30px;
+  	font-size: 14px; color: red;
+  	text-align: left;
+  	display: none;
+  }
+
+  #box .last{
+  	margin: 10px auto;
+	background: #0098ca;
+	font-size: 16px; color: white;
+	text-align: center; line-height: 30px; text-indent: 0;
+  }
+
+  #box form .pwdbox{
+  	position: relative;
+  	margin-top: 10px;
+  	width: 100%; height: auto;
+  }
+
+  #box form .pwdbox input{
+  	width: 200px; height: 30px;
+  	text-indent: 10px;
+  }
+
+  #box .psdB{
+  	position: absolute;
+  	left: 50%; top: 165px;
+  	margin-left: -55px;
+  	width: 110px; height: 30px;
+  	background: rgba(0,0,0,0.9);
+  	font-size: 15px; color: white;
+  	text-align: center; line-height: 30px;
+  	display: none;
+   }
+
+  #box .eye{
+   	position: absolute;
+   	right: 30px; top: 10px;
+   	width: 15px; height: 15px;
+   	background: red;
+   	border-radius: 50%;
+   }
+
+  #box .eye.sel{
+   	background: green;
+   }
+
+  #box .eye:hover{
+   	cursor: pointer;
+   }
+
+  </style>
+  <title></title>
+ </head>
+ <body>
+
+	<div id="box">
+		<p class="tit">注册</p>
+		<form>
+			<input type="text" class="name ok" placeholder="请输入用户名">
+			<p class='err'></p>
+			<div class="pwdbox">
+				<input type="password" class="psd" placeholder="请输入密码">
+				<span class="eyet eye"></span>
+			</div>
+			<p class='err'></p>
+			<div class="pwdbox">
+				<input type="password" class="psds" placeholder="确认密码">
+				<span class="eyeb eye"></span>
+			</div>
+			<p class='err'></p>
+			<input type="text" class="tel" placeholder="请输入电话">
+			<p class='err'></p>
+			<input type="text" class="mail" placeholder="请输入邮箱">
+			<p class='err'></p>
+			<input type="text" class="user" placeholder="请输入身份证号码">
+			<p class='err'></p>
+		</form>
+		<p class="psdB">请先输入密码</p>
+		<p class="last">注册</p>
+	</div>
+
+ </body>
+ <script language="javascript" charset="utf-8">
+
+ 	window.requestAnimationFrame = window.requestAnimationFrame || function (a){return setTimeout(a,1000/60)};
+    window.cancelAnimationFrame = window.cancelAnimationFrame || clearTimeout;
+
+ 	var reg = {
+ 		 qq : /^[1-9]\d{4,9}$/,
+         tel : /^1[3-8]\d{9}$/,
+         mail : /^\w+@[\da-z]{2,}(\.[a-z]{2,}){1,3}$/i,
+         IDCard : /^[1-9]\d{16}[\dxX]$/,
+         user : /^[a-z_]\w{5,17}$/i,
+         pwd : /^[\w!@#$%^&*()+={}\[\]:;"'\\\/\-<>,\.`~]{6,18}$/
+ 	} 
+
+ 	var box = document.getElementById('box'),
+ 		psdB = box.querySelector('.psdB'),
+ 	    err = box.querySelectorAll('.err'),
+ 	    eyet = box.querySelector('form .pwdbox .eyet'),
+ 	    eyeb = box.querySelector('form .pwdbox .eyeb'),
+ 		name_ = box.querySelector('form .name'),
+ 		pwd = box.querySelector('form .pwdbox .psd'),
+ 		pwds = box.querySelector('form .pwdbox .psds'),
+ 		tel = box.querySelector('form .tel'),
+ 		mail = box.querySelector('form .mail'),
+ 		user = box.querySelector('form .user'),
+ 		timer = '',
+ 		t = true;
+ 		b = true;
+ 		;
+
+ 		//name_.focus();
+ 		name_.onblur = function (){
+
+ 			var errVal = '';
+
+ 			if(reg.user.test(name_.value)){
+ 				intrue (name_,0);
+ 			}else{
+ 				name_.value.length < 6 || name_.value.length > 18 ? errVal = '长度不合格,首位不能是数字' : errVal = '用户名不合法,首位不能是数字';
+ 				inerr (name_,0,errVal);
+ 			}
+ 		};
+
+ 		pwd.onblur = function (){
+
+ 			var errVal = '';
+
+ 			if(reg.pwd.test(pwd.value)){
+ 				intrue (pwd,1);
+ 			}else{
+ 				name_.value.length < 6 || name_.value.length > 18 ? errVal = '长度不合格' : errVal = '有非法字符';
+ 				inerr (pwd,1,errVal);
+ 			}
+ 		};
+
+ 		pwds.onblur = function (){
+
+ 			var errVal = '两次密码输入不一致';
+ 			
+ 			if(pwd.value != ''){
+ 				
+ 				if(pwd.value == pwds.value){
+ 					intrue(pwds,2)
+	 			}else{
+	 				inerr(pwds,2,errVal);
+	 			}
+ 			}
+ 		};
+
+ 		pwds.onfocus = function (){
+
+ 			if(pwd.value == ''){
+ 				pwds.blur();
+ 				pwd.focus();
+ 				psdB.style.display = 'block';
+ 				pwdmove();
+ 			}
+ 		}
+
+ 		tel.onblur = function (){
+
+ 			var errVal = '电话不合法,1开头,11位';
+
+ 			if(reg.tel.test(tel.value)){
+ 				intrue(tel,3)
+ 			}else{
+ 				inerr(tel,3,errVal);
+ 			}
+ 		};
+
+ 		mail.onblur = function (){
+
+ 			var errVal = '邮箱不合法 格式:aa@bb.ccc';
+
+ 			if(reg.mail.test(mail.value)){
+ 				intrue(mail,4)
+ 			}else{
+ 				inerr(mail,4,errVal);
+ 			}
+ 		};
+
+ 		user.onblur = function (){
+
+ 			var errVal = '身份证号码不合法';
+
+ 			if(reg.IDCard.test(user.value)){
+ 				intrue(user,5)
+ 			}else{
+ 				inerr(user,5,errVal);
+ 			}
+ 		};
+
+ 		eyet.onclick = function (){
+ 			
+ 			if(t){
+ 				pwd.value = '';
+ 				pwd.type = 'text';
+ 				this.className = 'eyet eye sel';
+ 				t = !t;
+ 			}else{
+ 				pwd.value = '';
+ 				t = !t;
+ 				pwd.type = 'password';
+ 				this.className = 'eyet eye';
+ 			}
+ 			
+ 		}
+
+ 		eyeb.onclick = function (){
+ 			
+ 			if(b){
+ 				pwds.value = '';
+ 				pwds.type = 'text';
+ 				this.className = 'eyeb eye sel';
+ 				b = !b;
+ 			}else{
+ 				pwds.value = '';
+ 				b = !b;
+ 				pwds.type = 'password';
+ 				this.className = 'eyeb eye';
+ 			}
+ 			
+ 		}
+
+ 		function intrue (obj,num){
+ 			obj.style.border =  '1px solid #12F17E';
+ 			err[num].style.display = 'none';
+ 			obj.blur()
+ 		}
+
+ 		function inerr (obj,num,errVal){
+ 			obj.style.border =  '1px solid red';
+ 			obj.value = '';
+ 			err[num].style.display = 'block';
+ 			err[num].innerHTML = errVal;
+ 			obj.focus();
+ 		}
+
+ 		function pwdmove (){
+ 			var x = 100;
+ 			move()
+ 			function move(){
+
+ 				if(x > 165){
+ 					psdB.style.display = 'none';
+ 					cancelAnimationFrame(timer);
+ 				}
+ 				psdB.style.top = x + 'px';
+ 				x += 0.5;
+ 				timer = requestAnimationFrame(move);
+ 			}
+ 		}
+
+ </script>
+</html>

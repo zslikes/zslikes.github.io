@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <!--注释-->
+  <style type="text/css">
+  /*注释*/
+  *{margin:0; padding:0; font-family:"微软雅黑";}
+  li{list-style:none;}
+  a{text-decoration:none;}
+
+#box{
+    padding-top: 50px;
+    width: 100%; height: 600px;
+    background:-webkit-linear-gradient(top,#8ec0da,#e9ac8e)
+}
+
+
+#box .mess{
+    margin: 0 auto;
+    width: 1000px; height: 600px;
+    background:-webkit-linear-gradient(top,#8ec0da,#e9ac8e)
+}
+
+#box .mess .sel{
+    padding: 50px 0 0 50px;
+    width: 450px; height: 550px;
+    background: white;
+    float:left;
+}
+
+#box .mess .sel #add{
+    width: 450px; height: 30px;
+    background: white;
+    cursor: pointer;
+}
+
+#box .mess .sel #add .tit{
+    font-size: 15px; color:#F9AB00;
+}
+
+#box .mess .sel #rem{
+    width: 450px; height: 350px;
+    background: white;
+}
+
+#box .mess .sel #rem p{
+    padding: 5px 10px;
+    margin-right: 5px;
+    width: auto; height: 15px;
+    border: 1px solid #919191;
+    text-align: center; line-height: 13px;
+    cursor: pointer;
+    float:left;
+}
+
+#box .mess .sel #rem p span{
+    font-size: 14px;
+}
+
+#box .mess .sel #rem p span:first-child{
+    margin-right: 5px;
+    border-right: 1px solid #BABABA;
+}
+
+
+#box .mess #dis{
+    padding: 50px 0 0 50px;
+    width: 450px; height: 550px;
+    background: rgba(0,0,0,0.5);
+    float:left;
+}
+
+#box .mess #dis span{
+    margin: 0 5px 5px 0;
+    padding: 5px 15px;
+    width: auto; height: 15px;
+    border: 1px solid white;
+    color: white;
+    text-align: center; line-height: 14px;
+    float: left;
+}
+
+#box .mess .sel #add .city:hover{
+    color: red;
+}
+
+  </style>
+  <title></title>
+ </head>
+ <body>
+
+    <div id="box">
+        <div class="mess">
+            <div class="sel">
+                <div id="add">
+                    <span class="tit">热门目的地:</span>
+                    <span class="city">泰国</span>
+                    <span class="city">马来西亚</span>
+                    <span class="city">新加坡</span>
+                    <span class="city">英国</span>
+                    <span class="city">德国</span>
+                </div>
+                <div id="rem">
+                 <!-- <p><span>大连</span><span>X</span></p>
+                    <p><span>马来西亚</span><span>X</span></p> -->
+                </div>
+            </div>
+            <div id="dis">
+               <!--  <span>大连</span> -->
+            </div>
+        </div>
+    </div>
+
+ </body>
+ <script language="javascript" charset="utf-8">
+
+    var addS = document.getElementById("add").getElementsByTagName("span"),
+        lenAdd = addS.length;
+        rem = document.getElementById("rem"),
+        remP = rem.getElementsByTagName("p"),
+        dis = document.getElementById("dis"),
+        disS = dis.getElementsByTagName("span"),
+        isrun = true;
+
+        for(var x=1;x<lenAdd;x++){
+
+            addS[x].onclick = function (){
+
+                isrun = true;
+
+                for(var y=0;y<remP.length;y++){
+
+                    if(this.innerHTML == remP[y].children[0].innerHTML) isrun = false;
+                }
+
+                if(isrun){
+
+                    var show = this.innerHTML;
+                    var setp = document.createElement('p');
+                    var spanThis = document.createElement('span');
+                        spanThis.innerHTML = show;
+                    var spanX = document.createElement('span');
+                        spanX.innerHTML = 'X';
+                    var disspan = document.createElement('span');
+                        disspan.innerHTML = show;
+
+                    dis.appendChild(disspan);
+                    setp.appendChild(spanThis);
+                    setp.appendChild(spanX);
+                    rem.appendChild(setp);
+                } else {
+
+                    alert('不能添加相同目的地');
+                }
+            }
+        }
+
+        rem.onmouseover = function (){
+
+            for(x=0;x<remP.length;x++){
+
+                remP[x].num = x;
+                remP[x].children[1].onclick = function (){
+
+                    var num = this.parentNode.num;
+                    rem.removeChild(remP[num]);
+                    dis.removeChild(disS[num]);
+                }
+            }
+        }
+
+ </script>
+</html>

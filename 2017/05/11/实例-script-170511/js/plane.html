@@ -1,0 +1,1086 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <style type="text/css">
+  /*初始化*/
+  *{margin:0; padding:0; font-family:"微软雅黑";}
+  li{list-style:none;}
+  a{text-decoration:none;}
+  body{background:black;}
+  /*正文样式*/
+  #base{
+  	position: relative;
+  	margin: 50px auto;
+  	width: 400px; height: 600px;
+  	background: url('images/bg.jpg') no-repeat center;
+  	border: 10px solid #00C8FE;
+  	overflow: hidden;
+  }
+ 
+  #base > h2{
+  	position: absolute;
+  	z-index: 9;
+  	margin-left: -90px;
+	width: 180px; height: 35px;
+	font-style: italic;
+  	text-align: center;
+  	color: #DE1DE8;	
+  }
+  
+  #base > p{
+  	position: absolute;
+  	z-index: 9;
+  	margin-left: -90px;
+  	width: 180px; height: 35px;
+  	background: -webkit-linear-gradient(top,yellow,red);
+  	border-radius: 5px;
+  	text-align: center; line-height: 35px;
+  }
+  
+  #base img.plane{
+  	position: absolute;
+  	z-index: 9;
+  	width: 60px; height: 30px;
+  }
+
+  #base img.bullet{
+  	position: absolute;
+  	z-index: 9;
+  	width:6px; height: 22px;
+  }
+
+  #base img.boss{
+  	position: absolute;
+  	z-index: 9;
+  	width:23px; height: 30px;
+  }
+
+  #base img.boon{
+  	position: absolute;
+  	z-index: 9;
+  	width:23px; height: 30px;
+  }
+
+  #base img.boom{
+  	position: absolute;
+  	z-index: 9;
+  	width:63px; height: 36px;
+  }
+
+  #base img.maxboss{
+  	position: absolute;
+  	z-index: 9;
+  	width: 197px; height: 134px;
+  }
+
+  #base img.maxbu{
+  	position: absolute;
+  	z-index: 9;
+  	width: 60px; height: 120px;
+  	transform: rotate(180deg);
+  }
+
+  #base img.clear{
+  	position: absolute;
+  	z-index: 10;
+  	width: 128px; height: 128px;
+  }
+
+  #base img.flyb{
+  	position: absolute;
+  	z-index: 10;
+  	width: 86px; height: 193px;
+  }
+
+  #base img.bao{
+  	position: absolute;
+  	z-index: 10;
+  	width: 22px; height: 65px;
+  }
+
+  #base span.change{
+	position: absolute;
+	z-index: 8;
+	width: 20px; height: 20px;
+	background: red;
+	border-radius: 50%;
+  }
+
+  #base div.bg{
+  	position: absolute;
+	z-index: 7;
+	left: 0; top: -300px;
+	width: 400px; height: 900px;
+	background: url('images/bg.jpg') no-repeat center;
+	background-size: 100% 100%;
+	-webkit-animation: bgmove 9s linear infinite;
+  }
+
+  #base div.help{
+  	position: absolute;
+  	z-index: 19;
+  	right: 5px; top: 5px;
+  	width: 50px; height: 50px;
+  	background: #099BEB;
+  	border-radius: 5px;
+	font-weight: 600;
+  	text-align: center; line-height: 50px;
+  }
+
+  #base div.help p{
+  	position: absolute;
+  	left: -150px; top: 0;
+  	width: 150px; height: 50px;
+  	color: white;
+  	text-align: left; line-height: 23px;
+  	display: none;
+  }
+  
+  #base p.good{
+  	 position: absolute;
+  	 right: 2px; top: 2px;
+  	 width: 100px; height: 10px;
+  	 color: blue;
+  	 font-weight: 600;
+  	 background: red; 
+  }
+
+  #base div.maxnum{
+	position: absolute;
+	z-index: 10;
+  	left: 10px; top: 5px;
+  	width: 30px; height: 30px;
+  	color: white; font-weight: 600;
+  }
+
+  #base div.win{
+	position: absolute;
+	z-index: 10;
+  	left: 50%; top: 50%;
+  	margin-top: -250px;
+	margin-left: -150px;
+  	width: 300px; height: 500px;
+  	text-align: center;
+  	background: #6CACEA;
+  }
+
+  #base div.over{
+	position: absolute;
+	z-index: 10;
+  	left: 50%; top: 50%;
+  	margin-top: -250px;
+	margin-left: -150px;
+  	width: 300px; height: 500px;
+  	text-align: center;
+  	background: #6CACEA;
+  }
+
+  
+  #base div.over h1{
+	margin: 55px auto 40px auto;
+  }
+
+  #base div.over p{
+  	margin-bottom: 40px;
+  	font-size: 19px; font-weight: 600; color: white;
+  }
+
+  #base div.over p span{
+  	color: red;
+  }
+
+  #base div.over button{
+  	width: 70px; height: 35px;
+  	border-radius: 5px; 
+  }
+
+  #base div.win h1{
+	margin: 10px auto 10px auto;
+  }
+
+  #base div.win p{
+  	margin-bottom: 10px;
+  	font-size: 19px; font-weight: 600; color: white;
+  }
+
+  #base div.win img{
+  	margin-bottom: 10px;
+  	width: 300px; height: 300px;
+  }
+
+  #base div.win p span{
+  	color: red;
+  }
+
+  #base div.win button{
+  	width: 70px; height: 35px;
+  	border-radius: 5px; 
+  }
+
+  #base > p:hover{
+  	cursor: pointer;
+  	color: white;
+  	font-size: 16px; font-weight: bold;
+  	background: -webkit-linear-gradient(top,red,#0271BF);
+  }
+
+  #base div.over button,#base div.win button:hover{
+  	cursor: pointer;
+  	background: red;
+  }
+
+  #base div.help:hover{
+  	cursor: pointer;
+  }
+
+  #base div.help:hover p{
+  	display: block;
+  }
+
+  @-webkit-keyframes bgmove{
+  	0% { top: -300px;}
+   100% {top: 0;}
+  }
+  </style>
+  <title></title>
+ </head>
+ <body>
+	<div id="base">
+		<!-- <h2>飞机大冒险</h2>
+		<p>菜鸟</p>
+		<p>普通</p>
+		<p>专家</p>
+		<p>大神</p> -->
+		<div class="bg">
+		</div>
+
+		<!-- <div class="help">
+			说明
+			<p>鼠标移动飞机,鼠标左键点击发射保险。</p>
+		</div> -->
+		
+		<!-- <div class="over">
+			<h1>Game Over</h1>
+			<p class"getnum">您的得分是:<span></span></p>
+			<p class="name"></p>
+			<button>重新开始</button>
+		</div>  -->
+
+		<!-- <div class="win">
+			<h1>挑战成功</h1>
+			<img src="images/win.jpg" width="300" height="300" alt="">
+			<p class"getnum">您的得分是:<span></span></p>
+			<p class="name">大神</p>
+			<button>再玩一回</button>
+		</div> -->
+	</div>
+ </body>
+ <script language="javascript" charset="utf-8">
+
+ 	 //requestAnimationFrame的兼容
+        window.requestAnimationFrame = window.requestAnimationFrame || function (a) {return setTimeout(a,1000/60)};
+        window.cancelAnimationFrame = window.cancelAnimationFrame || function (a) {clearTimeout(a)};
+
+ 	(function(){
+
+ 		var base = document.getElementById('base'),
+ 			bossot = 100,  //boss血量
+ 			time = 3,  //保险出现时间
+ 			timerx = '',  //添加保险定时器 1000 * time
+ 			btnLen = 4,		//难度数量
+ 			box = '',  //保险
+ 			num = 0,  //消灭敌军数量
+ 			boxmove = '',  //保险位置定时器
+ 			name = '',  //称号
+ 			flynum = 0,  //保险数量
+ 			addbosst = '',  //boss出现时间定时器
+ 			flyimg = ['images/1.png','B','images/2.png','B','images/3.png','B','images/4.png','B','images/5.png',],  //保险内容
+ 			End = false;  //结束标志
+
+ 		init();
+ 		function init (){
+
+ 			bossot = 100,
+ 			time = 3,
+ 			timerx = '',
+ 			btnLen = 4,
+ 			box = '',
+ 			num = 0,
+ 			boxmove = '',
+ 			name = '',
+ 			flynum = 0,
+ 			addbosst = '',
+ 			flyimg = ['images/1.png','B','images/2.png','B','images/3.png','B','images/4.png','B','images/5.png',],
+ 			End = false;
+ 			clearB(); 
+
+	 		var head = document.createElement('h2');
+	 			head.innerHTML = '飞机大冒险';
+	 			head.style.left = '50%';
+	 			head.style.top = '10%';
+	 			base.appendChild(head);	
+
+	 		var help = document.createElement('div');
+	 			help.className = 'help';
+	 			help.innerHTML = '说明<p>鼠标移动飞机,鼠标左键点击发射保险。</p>';
+	 			base.appendChild(help);
+
+	 		for(var x=0;x<btnLen;x++){
+
+	 			var btn = document.createElement('p');
+	 			var mes = '';
+	 			switch(x){
+
+	 				case 0:
+	 					mes = '菜鸟';
+	 					btn.style.top = '30%';
+	 					break;
+	 				case 1:
+	 					mes = '普通';
+	 					btn.style.top = '48%';
+	 					break;
+	 				case 2:
+	 					mes = '专家';
+	 					btn.style.top = '66%';
+	 					break;
+	 				case 3:
+	 					mes = '大神';
+	 					btn.style.top = '84%';
+	 					break;
+	 			}
+
+	 			btn.style.left = '50%';
+	 			btn.easy = x;
+	 			btn.innerHTML = mes;
+	 			btn.onclick = function(e){
+
+	 				e = e || e.event;
+	 				var pos = {
+	 						x : e.clientX,
+	 						y : e.clientY
+	 					} 
+	 				
+	 				//注入元素
+	 				addcontent (this.easy,pos);
+	 				//添加盒子
+	 				changefly();
+	 				//添加敌军
+	 				addboss(this.easy);
+	 				//添加boss
+	 				addmaxboss(this.easy);
+	 			}
+	 			base.appendChild(btn);
+	 		}
+ 		}
+
+ 		//添加我军元素
+ 		function addcontent (easy,pos){
+ 			base.innerHTML = '';
+ 			var bg = document.createElement('div');
+ 				bg.className = 'bg';
+ 			base.appendChild(bg);	
+ 			setfly(easy,pos);
+ 		}
+
+ 		function setfly (easy,pos){
+
+ 			var nump = document.createElement('div');
+	 			nump.className = 'maxnum';
+	 			nump.innerHTML = num;
+	 			base.appendChild(nump);
+
+ 			//添加飞机图片
+ 			var fly = document.createElement('img');
+	 			fly.className = 'plane';
+	 			fly.src = 'images/plane.png';
+	 			fly.width = 60;
+	 			fly.height = 30;
+	 		//添加飞机保险
+	 		fly.onclick = function() {
+	 			addmaxbullet();
+	 		}
+ 			//设置飞机位置
+ 			var L_ = base.offsetLeft + 10 + fly.width/2;
+ 			var T_ = base.offsetTop + 10 + fly.height/2;
+	 			fly.style.left = pos.x - L_ + 'px';
+	 			fly.style.top = pos.y - T_ + 'px';
+ 			// 位置限制
+ 			var minL = -fly.width/2,
+ 				maxL = base.clientWidth - fly.width/2,
+ 				minT = 0,
+ 				maxT = base.clientHeight - fly.height/2;
+ 			
+ 			base.appendChild(fly);
+
+ 			// 创建子弹
+ 			setbullet(fly,easy);
+
+ 			//控制飞机移动
+ 			document.onmousemove = function (e){
+
+ 				e = e || e.event;
+ 				var moveL = e.clientX - L_;
+ 				var moveT = e.clientY - T_;
+ 				moveL = Math.min(moveL,maxL);
+ 				moveL = Math.max(moveL,minL);
+ 				moveT = Math.min(moveT,maxT);
+ 				moveT = Math.max(moveT,minT);
+ 				fly.style.left = moveL + 'px';
+ 				fly.style.top = moveT + 'px';
+
+ 				//检测盒子与飞机碰撞
+ 				if(box){
+
+ 					
+ 					var x = parseInt(fly.style.top) - parseInt(box.style.top);
+ 					var y = parseInt(fly.style.left) - parseInt(box.style.left);
+ 
+ 					if(( x < 25 && x > -25) && (y < 25 && y > -25)){
+
+	 					box && box.parentNode && base.removeChild(box);
+	 					clearInterval(boxmove);
+	 					time = 3;
+	 					box = '';
+	 					var index = Math.floor(Math.random()*(flyimg.length-1));
+	 					if(flyimg[index] === 'B' && flynum < 3){
+						var bao = new Image();
+                    	bao.className = 'bao';
+                    	bao.src = 'images/bao.png';
+                    	bao.width = 22;
+                    	bao.height = 65; 
+	                    bao.style.top = 530 + 'px';
+	                    bao.style.left = 5 + flynum*22 + 'px'; 
+                    	base.appendChild(bao); 
+                    	flynum++;
+                    	if(flynum >= 3) flynum = 3;
+					}else{
+						fly.src = flyimg[index];
+					}
+	 					changefly ()
+	 					setTimeout(function(){
+
+	 						fly.src = 'images/plane.png';
+	 					},2500)
+	 				}
+ 				
+ 			
+
+ 				}
+ 			}
+ 		}
+
+ 		//添加子弹
+ 		function setbullet (fly,easy){
+ 			
+ 			var speed = 100;
+ 			
+ 			switch(easy){
+
+ 				case 0:
+	 				speed = 50;
+	 				break;
+ 				case 1:
+	 				speed = 70;
+	 				break;
+ 				case 2:
+	 				speed = 100;
+	 				break;
+ 				case 3:
+	 				speed = 100;
+	 				break;
+ 			}
+ 			//生成子弹
+ 			fly.timer = setInterval(function(){
+
+ 				var bullet = document.createElement('img');
+	 			bullet.className = 'bullet';
+	 			bullet.src = 'images/bullet.png';
+	 			bullet.width = 6;
+	 			bullet.height = 22;
+	 			bullet.style.left = fly.offsetLeft + fly.clientWidth/2 - bullet.width/2 + 'px';
+	 			bullet.style.top = fly.offsetTop - bullet.height + 'px'; 
+				base.appendChild(bullet);	
+				//子弹运动
+				move();
+				function move(){
+
+					if(!End){
+
+						if(bullet.offsetTop <= -bullet.height/2){
+							
+							base.removeChild(bullet);
+							return;
+						}
+					
+						bullet.style.top = bullet.offsetTop - 10 + 'px';
+						bullet.timesr = requestAnimationFrame(move);
+					}
+				}
+
+ 			},speed);
+ 		}
+
+ 		//添加敌军飞机
+ 		function addboss (easy){
+
+ 			var speed = 200,
+ 				moveS = 1;
+ 			switch(easy){
+
+ 				case 0:
+ 					speed = 800;
+ 					moveS = 2;
+ 				case 1:
+ 					speed = 600;
+ 					moveS = 2.5;
+ 				case 2:
+ 					speed = 400;
+ 					moveS = 4;
+ 				case 3:
+ 					speed = 200;
+ 					moveS = 3.5;
+ 			}
+ 			//生成敌军飞机
+ 			var timer = setInterval(function(){
+
+ 				var boss = new Image();
+ 					boss.src = 'images/enemy.png';
+ 					boss.className = 'boss';
+ 					boss.width = 23;
+ 					boss.height = 30;
+ 					boss.style.left = Math.random()*base.clientWidth -boss.width/2 + 'px';
+ 					boss.style.top = -boss.height + 'px';
+ 					base.appendChild(boss);
+
+ 					var bossM = moveS + Math.random()*3;
+ 					//敌军飞机运动
+ 					bossmove();
+ 					function bossmove (){
+ 						if(!End){
+
+	 							if(boss.offsetTop >= base.clientHeight){
+	 							base.removeChild(boss);
+	 							return;
+ 							}
+ 						
+	 						boss.style.top = boss.offsetTop + bossM + 'px';
+	 						boss.timer = requestAnimationFrame(bossmove);
+	 						//检测与子弹碰撞
+	 						isclear(boss,timer);
+ 						}
+ 					}
+ 			},speed);
+ 		
+ 		}
+
+ 		//添加boss
+ 		function addmaxboss (easy){
+
+ 			var speed = 3000;
+ 			
+ 			switch(easy){
+
+ 				case 0:
+	 				speed = 3000;
+	 				break;
+ 				case 1:
+	 				speed = 2500;
+	 				break;
+ 				case 2:
+	 				speed = 2000;
+	 				break;
+ 				case 3:
+	 				speed = 2000;
+	 				break;
+	 		}
+
+ 			//创建boss
+ 			addbosst = setTimeout(function(){
+
+ 				var maxboss = new Image();
+ 					maxboss.src = 'images/max.png';
+ 					maxboss.className = 'maxboss';
+ 					maxboss.width = 197;
+ 					maxboss.height = 134;
+ 					base.appendChild(maxboss);
+ 				var left_ = (base.clientWidth - maxboss.clientWidth)/2;
+ 					maxboss.style.left = left_ + 'px';
+
+ 				var vita = document.createElement('p');
+ 					vita.innerHTML = bossot;
+ 					vita.className = 'good';
+ 					base.appendChild(vita);
+				
+				//boss移动
+ 				maxboss.timer = setInterval(function(){
+
+ 					var L_ = (Math.floor(Math.random()*30)) - 15;
+	 				var T_ = (Math.floor(Math.random()*30)) - 15;
+	 				var minL = 0;
+	 				var maxL = base.clientWidth - maxboss.clientWidth;
+	 				var minT = 0;
+	 				var maxT = base.clientHeight/3;
+	 				var bossL = maxboss.offsetLeft + L_;
+	 				var bossT = maxboss.offsetTop + T_;
+	 				var lval = 0;
+	 				var tval = 0;
+	 				bossL = Math.min(maxL,bossL);
+	 				bossL = Math.max(minL,bossL);
+	 				bossT = Math.min(maxT,bossT);
+	 				bossT = Math.max(minT,bossT);
+	 				maxboss.style.left = bossL + 'px';
+	 				maxboss.style.top = bossT + 'px';
+
+ 				},190);
+
+ 				//敌军boss发射子弹
+ 				maxboss.timerB = setInterval(function(){
+
+	 					var maxBu = new Image();
+		 					maxBu.src = 'images/maxbu.png';
+		 					maxBu.className = 'maxbu';
+		 					maxBu.width = 60;
+		 					maxBu.height = 120;
+		 					maxBu.style.left = maxboss.offsetLeft + maxboss.clientWidth/2 - maxBu.clientWidth/2 + 'px';
+		 					maxBu.style.top = maxBu.clientHeight + maxBu.offsetTop + maxboss.clientHeight -5 + 'px';
+		 					base.appendChild(maxBu);
+
+		 					//boss子弹移动
+		 					move(maxBu)
+		 					function move (){
+
+		 						maxBu.style.top = maxBu.offsetTop + 3 + 'px'
+		 						if(maxBu.offsetTop >= base.clientHeight){
+		 							base.removeChild(maxBu);
+		 							return;
+		 						}
+		 						maxBu.timer = requestAnimationFrame(move);
+		 					}
+	 				},speed);
+
+ 			},3000)
+ 		}
+
+ 		//检测与敌军碰撞
+ 		function isclear (boss,timer){
+
+ 			var allB = base.querySelectorAll('.bullet'),
+ 				allM = base.querySelectorAll('.maxbu'),
+ 				flyB = base.querySelectorAll('.flyb'),
+ 				bossvit = base.querySelector('.good'),
+ 				plane = base.querySelector('.plane'),
+ 				maxboss = base.querySelector('.maxboss'),
+ 				maxnum = base.querySelector('.maxnum'),
+ 				length = allB.length,
+ 				mlength = allM.length;
+
+ 			//检测我军飞机碰撞
+ 			if(plane && plane.parentNode && oninline(boss,plane)){
+ 				//清除敌军及我军飞机定时器
+ 				clearInterval(timer);
+ 				clearInterval(plane.timer);
+ 				if(maxboss){
+	 				clearInterval(maxboss.timer);
+	 				clearInterval(maxboss.timerB);
+ 				}
+ 				clearInterval(timerx);
+ 				clearInterval(boxmove);
+ 				clearTimeout(addbosst);
+ 				clearB();
+
+ 				var maxhot = new Image();
+ 					maxhot.src = 'images/boom2.png';
+ 					maxhot.className = 'boom';
+ 					maxhot.width = 60;
+ 					maxhot.height = 36;
+ 					maxhot.style.top = plane.offsetTop + 'px';
+ 					maxhot.style.left = plane.offsetLeft + 'px';
+ 					base.appendChild(maxhot);
+				var hot = new Image();
+	            	hot.className = 'boon';
+	            	hot.src = 'images/boom.png';
+	            	hot.width = 23;
+	            	hot.height = 30; 
+	                hot.style.top = boss.offsetTop + 'px';
+	                hot.style.left = boss.offsetLeft + 'px'; 
+	            	base.appendChild(hot);
+ 
+ 				setTimeout(function(){
+ 					End = true;
+ 					base.removeChild(maxhot);
+ 					base.removeChild(hot);
+ 					gameover();
+ 				},300);
+ 				
+ 				base.removeChild(plane);
+ 				base.removeChild(boss);
+ 				return;
+ 			}
+
+ 			//检测我军飞机与boss相撞
+ 			if(plane && maxboss && oninline(maxboss,plane)){
+
+ 				clearInterval(timerx);
+ 				clearInterval(boxmove);
+ 				clearInterval(maxboss.timer);
+ 				clearInterval(maxboss.timerB);
+ 				clearInterval(timer);
+ 				clearInterval(plane.timer);
+ 				clearTimeout(addbosst);
+ 				clearB();
+
+ 				var maxhot = new Image();
+ 					maxhot.src = 'images/boom2.png';
+ 					maxhot.className = 'boom';
+ 					maxhot.width = 60;
+ 					maxhot.height = 36;
+ 					maxhot.style.top = plane.offsetTop + 'px';
+ 					maxhot.style.left = plane.offsetLeft + 'px';
+ 					base.appendChild(maxhot);
+ 
+ 				setTimeout(function(){
+ 					End = true;
+ 					base.removeChild(maxhot);
+ 					clearB();
+ 					gameover();
+ 				},300);
+ 				
+ 				base.removeChild(plane);
+ 				return;
+ 			}
+
+ 			//检测我军飞机与敌军子弹相撞
+ 			for(var x=0;x<mlength;x++){
+
+ 				if(plane && allM[x] && oninline(plane,allM[x])){
+
+ 					clearInterval(timer);
+ 					clearInterval(plane.timer);
+ 					clearInterval(maxboss.timer);
+ 					clearInterval(maxboss.timerB);
+      				cancelAnimationFrame(allM[x].timer);
+      				clearInterval(timerx);
+      				clearInterval(boxmove);
+      				clearTimeout(addbosst);
+ 					
+ 					var maxhot = new Image();
+ 					maxhot.src = 'images/boom2.png';
+ 					maxhot.className = 'boom';
+ 					maxhot.width = 60;
+ 					maxhot.height = 36;
+ 					maxhot.style.top = plane.offsetTop + 'px';
+ 					maxhot.style.left = plane.offsetLeft + 'px';
+ 					base.appendChild(maxhot);
+ 
+	 				setTimeout(function(){
+	 					End = true;
+	 					base.removeChild(maxhot);
+	 					gameover();
+	 				},300);
+	 				
+	 				base.removeChild(plane);
+	 				break;
+ 				}
+ 			}
+
+ 			//检测子弹与敌军相撞
+ 			for(var x=0;x<length;x++){
+
+ 				//确认子弹与敌机碰撞
+ 				if(boss.parentNode && allB[x].parentNode && oninline(boss,allB[x])){
+ 					
+ 					//清除定时器
+ 					cancelAnimationFrame(allB[x].timer);
+                    cancelAnimationFrame(boss.tiemr);
+
+                    num++;
+      				maxnum.innerHTML = num;
+                    
+                    //添加爆炸效果
+                    var hot = new Image();
+                    	hot.className = 'boon';
+                    	hot.src = 'images/boom.png';
+                    	hot.width = 23;
+                    	hot.height = 30; 
+	                    hot.style.top = boss.offsetTop + 'px';
+	                    hot.style.left = boss.offsetLeft + 'px'; 
+                    	base.appendChild(hot);
+
+                    setTimeout(function(){
+                    	base.removeChild(hot);
+                    },300)
+                    
+                    //清除子弹与飞机
+ 					base.removeChild(allB[x]);
+ 					base.removeChild(boss);
+ 					break;
+ 				}
+
+	 			//检测boss碰撞子弹
+	 			if(maxboss && maxboss.parentNode && allB[x].parentNode && oninline(maxboss,allB[x])){
+
+	 				//清除定时器
+ 					cancelAnimationFrame(allB[x].timer);
+
+ 					bossot--;
+ 					bossvit.innerHTML = bossot;
+ 					bossvit.style.width = bossot + 'px';
+	 				var hot = new Image();
+                    	hot.className = 'boon';
+                    	hot.src = 'images/boom.png';
+                    	hot.width = 23;
+                    	hot.height = 30; 
+	                    hot.style.top = allB[x].offsetTop + 'px';
+	                    hot.style.left = allB[x].offsetLeft + 'px'; 
+                    	base.appendChild(hot);
+
+                    setTimeout(function(){
+                    	base.removeChild(hot);
+                    },300)
+
+                    //清除子弹
+ 					base.removeChild(allB[x]);
+ 					break;  
+	 			}
+
+ 			}
+
+ 			//检测敌军与大招相撞
+ 			for(var x=0;x<flyB.length;x++){
+
+ 				if(flyB && flyB[x].parentNode && oninline(boss,flyB[x])){
+
+ 					num++;
+ 					var hot = new Image();
+                    	hot.className = 'boon';
+                    	hot.src = 'images/boom.png';
+                    	hot.width = 23;
+                    	hot.height = 30; 
+	                    hot.style.top = boss.offsetTop + 'px';
+	                    hot.style.left = boss.offsetLeft + 'px'; 
+                    	base.appendChild(hot);
+
+                    setTimeout(function(){
+                    	
+                    	if(hot.parentNode) base.removeChild(hot);
+                    },300)
+                    
+                    //清除子弹与飞机
+ 					if(hot.parentNode) base.removeChild(boss);
+ 					break;
+ 				}
+ 			}			
+ 			
+ 			if(bossot <= 0){
+
+ 					clearInterval(timer);
+ 					clearInterval(boxmove);
+					if(plane) clearInterval(plane.timer);
+					clearInterval(maxboss.timer);
+					clearInterval(maxboss.timerB);
+					clearTimeout(addbosst);
+					clearB();
+					End = true;
+				    
+				var clear = new Image();
+					clear.src = 'images/clear.png';
+					clear.className = 'clear';
+					clear.width = 128;
+					clear.height = 128;
+					base.appendChild(clear);
+					clear.style.top = maxboss.offsetTop + maxboss.clientHeight/2 - clear.clientHeight/2 + 'px';
+					clear.style.left = maxboss.offsetLeft + maxboss.clientWidth/2 - clear.clientWidth/2 + 'px';
+					
+					setTimeout(function(){
+						clearB();
+						maxboss.parentNode && base.removeChild(maxboss);
+						base.removeChild(clear);	
+					},300);
+
+
+					setTimeout(function(){
+						clearB();
+						youwin();	
+					},500);	
+ 			}
+ 		}
+
+ 		//碰撞检测
+ 		function oninline(obj1,obj2){
+
+ 			var T1 = obj1.offsetTop,
+                B1 = T1 + obj1.offsetHeight,
+                L1 = obj1.offsetLeft,
+                R1 = L1 + obj1.offsetWidth,
+
+                T2 = obj2.offsetTop,
+                B2 = T2 + obj2.offsetHeight,
+                L2 = obj2.offsetLeft,
+                R2 = L2 + obj2.offsetWidth;
+
+            //物体1在物体2上边||在物体2下边||在物体2左边||在物体2右边就没有碰撞 ！取反为碰撞了
+            return !(B1 < T2 || L1 > R2 || T1 > B2 || R1 < L2);
+ 		}
+
+ 		//改变我军飞机
+ 		function changefly (fly){
+
+		    timerx = setInterval(function(){
+			time --;
+			if(time <= 0) {
+
+					var boxL = Math.floor(Math.random()*base.clientWidth-20);
+					var boxT = Math.floor(Math.random()*base.clientHeight-20);
+					if(boxL < 0) boxL = 20;
+					if(boxT < 0) boxT = 20;
+					box = document.createElement('span')
+					box.style.left = boxL + 'px';
+					box.style.top = boxT + 'px';
+					box.className = 'change';
+					base.appendChild(box);						
+					clearInterval(timerx);
+
+					boxmove = setInterval(function(){
+
+ 						var boxL = Math.floor(Math.random()*base.clientWidth-20);
+						var boxT = Math.floor(Math.random()*base.clientHeight-20);
+						if(boxL < 0) boxL = 20;
+						if(boxT < 0) boxT = 20;
+						if(box){
+							box.style.left = boxL + 'px';
+							box.style.top = boxT + 'px';
+						}					
+ 					},3000);
+				}
+			},500);	
+ 		} 
+
+ 		//胜利
+ 		function youwin (){
+
+ 				testname ();
+			var win = document.createElement('div');
+ 				win.className = 'win';
+ 				win.innerHTML = '<h1>挑战成功</h1>'
+			    + '<img src="images/win.jpg" width="300" height="300" alt="">'
+			    + '<p class"getnum">您的得分是: <span>' + num + '</span></p>'
+			    + '<p class="name">' + name + '</p>'
+			    + '<button>再玩一回</button>';
+			    base.appendChild(win);
+
+			    var btn = base.querySelector('.win button');
+ 				btn.onclick = function(){
+
+ 				base.innerHTML = '';
+ 				init();
+ 			} 
+ 		}
+
+ 		//游戏结束
+ 		function gameover (){
+
+ 				testname ();
+ 			var maxboss = base.querySelector('.maxboss');
+ 			var over = document.createElement('div');
+ 				over.className = 'over';
+ 				over.innerHTML = '<h1>Game Over</h1>'
+				+ '<p class"getnum">您的得分是: <span>' + num + '</span></p>'
+				+ '<p class="name">' + name + '</p>'
+				+ '<button>重新开始</button>';
+				if(maxboss) base.removeChild(maxboss);
+				clearB();  
+				clearInterval(timerx); 
+				clearInterval(boxmove);
+				clearTimeout(addbosst);
+ 				base.appendChild(over);
+ 			var btn = base.querySelector('.over button');
+ 			btn.onclick = function(){
+
+ 				base.innerHTML = '';
+ 				init();
+ 			} 
+ 		}
+
+ 		//设置称号
+ 		function testname (){
+
+ 			if(num<10){
+ 				name = '菜鸟';
+ 			}else if(num<15){
+ 				name = '一段';
+ 			}else if(num<20){
+ 				name = '二段';
+ 			}else if(num<25){
+ 				name = '三段';
+ 			}else{
+ 				name = '大神';
+ 			}
+ 		}
+
+ 		//发射保险
+ 		function addmaxbullet (){
+
+ 			flynum--;
+ 			if(flynum < 0) flynum = 0;
+ 			var maxnumA = base.querySelectorAll('.bao'),
+ 				baolen = maxnumA.length;
+ 			if(baolen > 0){
+
+ 					base.removeChild(maxnumA[baolen-1]);
+	 			for(var x=0;x<5;x++){
+
+	 				var maxB = new Image();
+	 					maxB.src = 'images/b.png';
+	 					maxB.className = 'flyb';
+	 					maxB.width = 86;
+	 					maxB.height = 193;
+	 					maxB.style.top = Math.random()*base.clientHeight/2 + base.clientHeight/2 - 50 + 'px';
+	 					maxB.style.left = Math.random()*base.clientWidth  + 'px';
+	 					base.appendChild(maxB);
+	 					move(maxB)
+	 					function move(maxB){
+		 				    maxB.timer = setInterval(function(){
+		 					maxB.style.top = maxB.offsetTop - 20 + 'px';
+		 					if(maxB.offsetTop <= -150 && maxB.parentNode){
+		 						base.removeChild(maxB);
+		 						clearInterval(maxB.temer);
+		 						return;
+		 					}
+	 					},100);
+		 			}	    
+	 			}
+ 			}
+ 		}
+ 		
+ 		//清除剩余定时器
+ 		function clearB (){
+
+ 			var oth = base.querySelectorAll('.maxbu');
+ 			    othlen = oth.length;
+ 			var oc = base.querySelectorAll('.change');
+ 				oclen = oc.length; 
+
+ 			clearInterval(timerx);
+ 			clearInterval(boxmove);
+
+ 			 for(var x=0;x<othlen;x++){
+
+ 			 	base.removeChild(oth[x]);
+ 			 	cancelAnimationFrame(oth[x].timer);
+ 			 }
+
+ 			  for(var x=0;x<oclen;x++){
+
+ 			 	base.removeChild(oc[x]);
+ 			 }
+ 		}
+
+ 	})();
+
+ </script>
+</html>
